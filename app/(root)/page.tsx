@@ -2,9 +2,10 @@
 
 function page() {
   return (
-    <div>
-      Home
-    </div>
+    <>
+      <h2>Home</h2>
+
+    </>
   )
 }
 

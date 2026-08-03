@@ -29,6 +29,7 @@ export default function Page() {
           />
 
           <Input
+          type="password"
             label="Password"
             placeholder="Enter Password"
           />
