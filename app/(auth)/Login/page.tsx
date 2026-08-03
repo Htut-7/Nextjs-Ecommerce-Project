@@ -23,11 +23,7 @@ export default function Page() {
 
         <div className="space-y-5">
           <Input
-            label="Username"
-            placeholder="Enter Username"
-          />
-
-          <Input
+            type="email"
             label="Email"
             placeholder="Enter Email"
           />
