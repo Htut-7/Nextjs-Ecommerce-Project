@@ -1,0 +1,125 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Classic White T-Shirt",
+      "category": "Men",
+      "brand": "UrbanWear",
+      "price": 19.99,
+      "rating": 4.7,
+      "stock": 25,
+      "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+      "description": "Soft cotton crew neck t-shirt perfect for everyday wear."
+    },
+    {
+      "id": 2,
+      "name": "Slim Fit Denim Jacket",
+      "category": "Men",
+      "brand": "Denim Co.",
+      "price": 69.99,
+      "rating": 4.8,
+      "stock": 15,
+      "image": "https://images.unsplash.com/photo-1542272604-787c3835535d",
+      "description": "Classic blue denim jacket with a modern slim fit."
+    },
+    {
+      "id": 3,
+      "name": "Oversized Hoodie",
+      "category": "Unisex",
+      "brand": "Street Mode",
+      "price": 49.99,
+      "rating": 4.6,
+      "stock": 18,
+      "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
+      "description": "Comfortable oversized hoodie made from premium fleece."
+    },
+    {
+      "id": 4,
+      "name": "Floral Summer Dress",
+      "category": "Women",
+      "brand": "Bloom",
+      "price": 54.99,
+      "rating": 4.9,
+      "stock": 20,
+      "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c",
+      "description": "Lightweight floral dress ideal for warm weather."
+    },
+    {
+      "id": 5,
+      "name": "Leather Handbag",
+      "category": "Accessories",
+      "brand": "LuxStyle",
+      "price": 89.99,
+      "rating": 4.8,
+      "stock": 10,
+      "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3",
+      "description": "Elegant leather handbag with spacious interior."
+    },
+    {
+      "id": 6,
+      "name": "Running Sneakers",
+      "category": "Footwear",
+      "brand": "RunFast",
+      "price": 79.99,
+      "rating": 4.7,
+      "stock": 30,
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+      "description": "Lightweight sneakers designed for comfort and performance."
+    },
+    {
+      "id": 7,
+      "name": "Women's Blazer",
+      "category": "Women",
+      "brand": "Office Chic",
+      "price": 74.99,
+      "rating": 4.8,
+      "stock": 14,
+      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1",
+      "description": "Tailored blazer suitable for work and formal occasions."
+    },
+    {
+      "id": 8,
+      "name": "Baseball Cap",
+      "category": "Accessories",
+      "brand": "UrbanWear",
+      "price": 18.99,
+      "rating": 4.4,
+      "stock": 40,
+      "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee",
+      "description": "Adjustable baseball cap with embroidered logo."
+    },
+    {
+      "id": 9,
+      "name": "Leather Boots",
+      "category": "Footwear",
+      "brand": "Classic Step",
+      "price": 109.99,
+      "rating": 4.9,
+      "stock": 12,
+      "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2",
+      "description": "Premium leather boots crafted for durability and style."
+    },
+    {
+      "id": 10,
+      "name": "Knitted Sweater",
+      "category": "Women",
+      "brand": "Cozy Knit",
+      "price": 59.99,
+      "rating": 4.7,
+      "stock": 16,
+      "image": "https://images.unsplash.com/photo-1529139574466-a303027c1d8b",
+      "description": "Warm knitted sweater with a relaxed fit."
+    },
+    {
+      "id": 11,
+      "name": "Classic Wrist Watch",
+      "category": "Accessories",
+      "brand": "TimeCraft",
+      "price": 129.99,
+      "rating": 4.9,
+      "stock": 8,
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+      "description": "Minimalist stainless steel wrist watch for everyday elegance."
+    }
+  ]
+}
