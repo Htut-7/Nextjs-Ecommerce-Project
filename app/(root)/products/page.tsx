@@ -17,7 +17,7 @@ async function page() {
 
                 <div className="mb-12 text-center">
                     <h2 className="text-4xl font-bold text-slate-900">
-                        Our Products
+                        Shop the Latest Trends
                     </h2>
 
                     <p className="mx-auto mt-4 max-w-2xl text-slate-500">
@@ -87,7 +87,7 @@ async function page() {
                                 </div>
 
                                 <Link
-                                    href={`/detail/${d.id}`}
+                                    href={`/products/`+d.id}
                                     className="mt-2 flex w-full items-center justify-center rounded-xl bg-black px-4 py-3 font-semibold text-white transition hover:bg-slate-800"
                                 >
                                     Check Detail
