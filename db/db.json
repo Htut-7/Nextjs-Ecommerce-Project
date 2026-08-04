@@ -121,5 +121,89 @@
       "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
       "description": "Minimalist stainless steel wrist watch for everyday elegance."
     }
+  ],
+  
+  "blogs": [
+    {
+      "id": 1,
+      "title": "10 Must-Have Fashion Essentials for Every Wardrobe",
+      "author": "Emily Carter",
+      "category": "Fashion Tips",
+      "date": "2026-08-01",
+      "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "Discover the timeless clothing pieces that every wardrobe needs for effortless everyday style.",
+      "content": "Building a versatile wardrobe starts with investing in timeless essentials. A classic white shirt, tailored blazer, quality denim jeans, neutral sneakers, and a little black dress are just a few pieces that never go out of style. These staples allow you to create countless outfits while staying fashionable throughout every season."
+    },
+    {
+      "id": 2,
+      "title": "Summer Fashion Trends You Should Try This Year",
+      "author": "Sophia Miller",
+      "category": "Trends",
+      "date": "2026-07-28",
+      "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "Explore the hottest summer trends, colors, and outfit inspirations for 2026.",
+      "content": "This summer is all about breathable fabrics, pastel colors, oversized silhouettes, and comfortable sandals. Linen shirts, floral dresses, and lightweight accessories are dominating fashion collections, making it easier than ever to stay cool while looking stylish."
+    },
+    {
+      "id": 3,
+      "title": "How to Choose the Perfect Sneakers",
+      "author": "James Wilson",
+      "category": "Footwear",
+      "date": "2026-07-20",
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "Find the ideal pair of sneakers for comfort, performance, and everyday fashion.",
+      "content": "Choosing the right sneakers depends on your lifestyle. Running shoes provide excellent support for active users, while minimalist sneakers complement casual outfits. Focus on comfort, durability, and materials to ensure your footwear lasts longer."
+    },
+    {
+      "id": 4,
+      "title": "Accessorize Like a Fashion Expert",
+      "author": "Olivia Brown",
+      "category": "Accessories",
+      "date": "2026-07-15",
+      "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "Simple accessory tips that instantly elevate your everyday outfits.",
+      "content": "Accessories complete every outfit. Whether it's a luxury watch, leather handbag, or minimalist jewelry, the right accessories can transform even the simplest clothing into a fashionable look."
+    },
+    {
+      "id": 5,
+      "title": "Denim Styling Guide for Every Occasion",
+      "author": "Daniel Lee",
+      "category": "Style Guide",
+      "date": "2026-07-10",
+      "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "Learn how to style denim jackets and jeans for casual and formal looks.",
+      "content": "Denim is one of the most versatile materials in fashion. Pair denim jackets with chinos for smart casual occasions, or wear classic jeans with sneakers and a t-shirt for an effortless everyday outfit."
+    },
+    {
+      "id": 6,
+      "title": "Why Sustainable Fashion Matters",
+      "author": "Emma Taylor",
+      "category": "Lifestyle",
+      "date": "2026-07-05",
+      "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "Discover how sustainable fashion helps both the environment and your wardrobe.",
+      "content": "Sustainable fashion encourages consumers to invest in high-quality clothing that lasts longer while reducing waste. Choosing eco-friendly brands and timeless designs helps create a more responsible fashion industry."
+    },
+    {
+      "id": 7,
+      "title": "How to Build a Capsule Wardrobe",
+      "author": "Grace Johnson",
+      "category": "Wardrobe",
+      "date": "2026-06-30",
+      "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "Simplify your closet with versatile clothing that matches every occasion.",
+      "content": "A capsule wardrobe focuses on owning fewer, higher-quality pieces that can be mixed and matched easily. Neutral colors and classic designs make dressing simpler while reducing unnecessary purchases."
+    },
+    {
+      "id": 8,
+      "title": "Fashion Color Trends for 2026",
+      "author": "Lucas Anderson",
+      "category": "Fashion News",
+      "date": "2026-06-25",
+      "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=500&fit=crop&auto=format&q=80",
+      "description": "See which colors are dominating fashion collections this year.",
+      "content": "Earthy neutrals, soft greens, warm browns, and elegant monochrome outfits are leading fashion trends in 2026. These colors are easy to style and suit both casual and formal wardrobes."
+    }
   ]
 }
+  
