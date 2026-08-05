@@ -2,14 +2,20 @@ import React from 'react'
 import Image from 'next/image';
 import { CiStar } from "react-icons/ci";
 import Link from 'next/link';
+import SearchInput from '@/Components/SearchInput';
 
-async function page() {
+async function page({searchParams,} : {searchParams: Promise<{search?: string | undefined, filter?:string | undefined }>}) {
 
     const res = await fetch('http://localhost:3001/products', {
         cache: "no-store"
     });
 
     const data = await res.json();
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {search,filter}=await searchParams;
+    console.log(search);
+    console.log(filter);
 
     return (
         <section className="bg-slate-50 py-16">
@@ -26,6 +32,12 @@ async function page() {
                         style and occasion.
                     </p>
                 </div>
+
+                <div className="mb-10 flex justify-center">
+                    <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                        <SearchInput />
+                    </div>
+                 </div>
 
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {data.map((d: {
