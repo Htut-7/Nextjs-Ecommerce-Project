@@ -31,7 +31,7 @@ lowlight.register('js', js)
 lowlight.register('ts', ts)
 
 
-const Editor = () => {
+const Editor = ({value,onChange,label} : {value?: string, onChange: (value:string)=>void; label?:string}) => {
   const editor = useEditor({
     editorProps:{
         attributes:{
@@ -108,7 +108,10 @@ const Editor = () => {
         lowlight,
       }),
     ],
-    content: '<p>Hello World! 🌎️</p>',
+    content: value || "",
+    onUpdate({editor}){
+      onChange(editor.getHTML());
+    },
     // Don't render immediately on the server to avoid SSR issues
     immediatelyRender: false,
   })
