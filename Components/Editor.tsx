@@ -31,6 +31,7 @@ lowlight.register('js', js)
 lowlight.register('ts', ts)
 
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Editor = ({value,onChange,label} : {value?: string, onChange: (value:string)=>void; label?:string}) => {
   const editor = useEditor({
     editorProps:{
