@@ -12,7 +12,7 @@ async function page({searchParams,} : {searchParams: Promise<{search?: string | 
 
     const data = await res.json();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const {search,filter}=await searchParams;
     console.log(search);
     console.log(filter);
