@@ -2,7 +2,7 @@ const ROUTES={
     HOME: '/',
     PRODUCT: '/products',
     BLOGS: '/blogs',
-    CONTACT: '/contact/components'
+    CONTACT: '/contact/create'
 }
 
 export default ROUTES;

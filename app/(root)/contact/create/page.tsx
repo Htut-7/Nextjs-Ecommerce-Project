@@ -1,11 +1,11 @@
-// import React from 'react'
-// import contactForm from '../components/contactForm'
+import React from 'react'
+import ContactForm from '../components/ContactForm'
 
 
-// function page() {
-//   return 
-//     <contactForm/>
+function page() {
+  return (
+    <ContactForm />
+  );
+}
 
-// }
-
-// export default page
+export default page
