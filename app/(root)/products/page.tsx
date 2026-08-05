@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { CiStar } from "react-icons/ci";
 import Link from 'next/link';
 import SearchInput from '@/Components/SearchInput';
+import Filter from '@/Components/Filter';
 
 async function page({searchParams,} : {searchParams: Promise<{search?: string | undefined, filter?:string | undefined }>}) {
 
@@ -35,9 +36,27 @@ async function page({searchParams,} : {searchParams: Promise<{search?: string | 
 
                 <div className="mb-10 flex justify-center">
                     <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                        <SearchInput />
+                        <SearchInput placeholder='Search Products...'/>
+
+                         <div className="border-t border-slate-200 pt-6">
+            <div className="mb-3 flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-slate-900">
+                    Filter by Category
+                </h3>
+
+                {filter && (
+                    <span className="rounded-full bg-black px-3 py-1 text-sm font-medium text-white">
+                        {filter}
+                    </span>
+                )}
+            </div>
+
+            <Filter />
+        </div>
                     </div>
                  </div>
+
+                 
 
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {data.map((d: {

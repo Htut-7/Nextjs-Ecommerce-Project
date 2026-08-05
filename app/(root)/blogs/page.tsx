@@ -1,14 +1,20 @@
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import SearchInput from '@/Components/SearchInput';
+import Filter from '@/Components/Filter';
 
-async function page() {
+async function page({searchParams} : {searchParams: Promise<{search?:string, filter?:string}>}) {
 
     const res = await fetch('http://localhost:3001/blogs', {
         cache: "no-store"
     });
 
     const data = await res.json();
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {search,filter}=await searchParams;
+    
 
     return (
         <section className="bg-slate-50 py-16">
@@ -25,6 +31,28 @@ async function page() {
                         wardrobe you&apos;ll love.
                     </p>
                 </div>
+
+                <div className="mb-10 flex justify-center">
+                    <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                        <SearchInput placeholder='Search Blogs'/>
+
+                         <div className="border-t border-slate-200 pt-6">
+            <div className="mb-3 flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-slate-900">
+                    Filter by Category
+                </h3>
+
+                {filter && (
+                    <span className="rounded-full bg-black px-3 py-1 text-sm font-medium text-white">
+                        {filter}
+                    </span>
+                )}
+            </div>
+
+            <Filter />
+        </div>
+                    </div>
+                 </div>
 
                 <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
                     {data.map((d: {

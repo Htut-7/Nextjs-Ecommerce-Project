@@ -5,21 +5,25 @@ function Button({
   children,
   icon,
   className = "",
-  variant="primary",
+  text,
+  variant = "primary",
   ...props
 }: {
   children: React.ReactNode;
   icon?: string | StaticImageData;
+  text?: string
   variant?: "primary" | "secondary";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...props}
-      className={`flex w-full items-center justify-center gap-3 rounded-xl border border-slate-300 bg-black px-5 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-slate-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 ${
+      className={`inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50
+      ${
         variant === "primary"
-          ? "border border-slate-300 bg-black text-white hover:bg-slate-800"
-          : "border border-slate-300 bg-black text-black hover:bg-slate-100"
-      } ${className}`}
+          ? "border border-black bg-black text-white hover:bg-slate-800"
+          : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 hover:border-slate-400"
+      }
+      ${className}`}
     >
       {icon && (
         <Image
@@ -32,6 +36,7 @@ function Button({
       )}
 
       <span>{children}</span>
+      <p>{text}</p>
     </button>
   );
 }

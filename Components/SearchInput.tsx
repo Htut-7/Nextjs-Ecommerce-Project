@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import queryString from 'query-string';
 import { useDebounce } from 'use-debounce';
 
-function SearchInput() {
+function SearchInput({placeholder} : {placeholder?: string}) {
 
     const searchParams=useSearchParams();
     const [search,setSearch]=useState(searchParams.get('search') || "");
@@ -27,8 +27,8 @@ function SearchInput() {
 
   return (
     <div>
-      <Input type='text' placeholder='Search Products...' 
-        onChange={(e)=>setSearch(e.target.value)} value={search}
+      <Input type='text' placeholder={placeholder} 
+        onChange={(e)=>setSearch(e.target.value)} value={search} 
         className='h-12 rounded-xl border-slate-200 pl-12 pr-4 shadow-none focus:border-black focus:ring-2 focus:ring-slate-200'
       />
     </div>
