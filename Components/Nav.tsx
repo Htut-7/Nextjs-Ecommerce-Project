@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-import Button from './Button'
+// import Button from './Button'
+import ROUTES from "@/ROUTES"
 
 function Nav() {
   return (
@@ -12,11 +13,11 @@ function Nav() {
 
         <div>
           <ul className="flex items-center gap-8 text-sm font-medium text-slate-600">
-            <Link href="/" className="transition-colors hover:text-black">
+            <Link href={ROUTES.HOME} className="transition-colors hover:text-black">
               Home
             </Link>
 
-            <Link href="/products" className="transition-colors hover:text-black">
+            <Link href={ROUTES.PRODUCT} className="transition-colors hover:text-black">
               Products
             </Link>
 
@@ -24,7 +25,7 @@ function Nav() {
               Categories
             </Link>
 
-            <Link href="/blogs" className="transition-colors hover:text-black">
+            <Link href={ROUTES.BLOGS} className="transition-colors hover:text-black">
               Blogs
             </Link>
 
@@ -32,7 +33,7 @@ function Nav() {
               About
             </Link>
 
-            <Link href="/contact" className="transition-colors hover:text-black">
+            <Link href={ROUTES.CONTACT} className="transition-colors hover:text-black">
               Contact
             </Link>
           </ul>
