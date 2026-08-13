@@ -1,5 +1,8 @@
 import dbConnect from "@/Components/lib/dbConnect";
 import { handleErrorResponse, handleSuccessResponse } from "@/Components/lib/response";
+import UserSchema from "@/Components/lib/schema/UserSchema";
+import validateBody from "@/Components/lib/validateBody";
+
 import User from "@/database/user.model";
 
 
@@ -17,6 +20,9 @@ export async function POST(request: Request){
     try{
         await dbConnect();
         const body=await request.json();
+
+        validateBody(body, UserSchema);
+
 
         const existingEmail=await User.findOne({email: body.email});
         if(existingEmail) throw new Error('Email already exists');

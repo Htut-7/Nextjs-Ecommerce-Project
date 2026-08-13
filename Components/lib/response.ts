@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { ZodError } from "zod";
 
 const handleSuccessResponse=(data:unknown, status:number=200)=>{
     return NextResponse.json(
@@ -11,12 +12,24 @@ const handleSuccessResponse=(data:unknown, status:number=200)=>{
 };
 
 const handleErrorResponse=(e: unknown)=>{
+
+    let status=500;
+    let details=null;
+    let message=e instanceof Error ? e.message : "Something went Wrong";
+
+    if(e instanceof ZodError){
+        status= 400;
+        details= e.flatten().fieldErrors;
+        message= "Validation Error";
+    }
+
     return NextResponse.json(
         {
-            message: e instanceof Error ? e.message : "Something went Wrong",
+            message,
+            details,
             success: false,
         },{
-            status: 500
+            status
         }
     )
 }
