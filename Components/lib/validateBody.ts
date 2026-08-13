@@ -1,6 +1,6 @@
-import { ZodError, ZodSchema } from "zod";
+import { ZodError, ZodObject } from "zod";
 
-const validateBody=(body: unknown, schema: ZodSchema,partial:boolean=false)=>{
+const validateBody=(body: unknown, schema: ZodObject,partial:boolean=false)=>{
     const validateData= partial ? schema.partial().safeParse(body) : schema.safeParse(body) ;
 
     if(!validateData.success){
