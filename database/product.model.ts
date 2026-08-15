@@ -50,6 +50,6 @@ const productSchema=new Schema(
     },{timestamps: true}
 )
 
-const Product=models?.Product || model<Iproduct>("product",productSchema);
+const Product=models?.Product || model<Iproduct>("Product",productSchema);
 export default Product;
 
