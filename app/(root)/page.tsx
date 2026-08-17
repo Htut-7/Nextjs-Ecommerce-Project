@@ -1,5 +1,5 @@
 import Hero from "@/Components/Hero";
-import { api } from "@/Components/lib/api";
+
 
 export default async function Page() {
 
