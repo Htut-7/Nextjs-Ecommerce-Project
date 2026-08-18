@@ -21,7 +21,7 @@ export async function POST(request:Request){
             user,
         },signinWithOauthSchema)
 
-        const {username,password,email,image}= validateData.user;
+        const {username,email,image}= validateData.user;
 
         let  existingUser=await User.findOne({
             email,
@@ -30,10 +30,9 @@ export async function POST(request:Request){
         if(!existingUser){
             const [newUser]=await User.create([
                 {
-                    password,
                     email,
                     image,
-                    usernam:slugify(username,{
+                    username:slugify(username,{
                         lower:true,
                         trim:true,
                         strict:true,
@@ -66,6 +65,7 @@ export async function POST(request:Request){
                     providerAccountId,
                     username,
                     image,
+                    email,
                 }
             ],{session})
         }

@@ -3,8 +3,8 @@ import { model, Schema, models, Document } from "mongoose";
 interface Iuser{
         username: string,
         email: string,
-        password: string,
-        profileImage?:string,
+        password?: string,
+        image?:string,
         role?:string
     }
 
@@ -23,9 +23,9 @@ const userSchema=new Schema(
         },
         password:{
             type:String,
-            required: true,
+            required: false,
         },
-        profileImage:{
+        image:{
             type: String,
         },
         role:{

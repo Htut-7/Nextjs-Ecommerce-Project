@@ -58,7 +58,7 @@ export const api={
             userId: string,
             username:string,
             email: string,
-            password: string,
+            password?: string,
             provider: string,
             providerAccountId: string,
         })=>fetchHandler(API_URL+'/account',{
@@ -67,6 +67,11 @@ export const api={
         }),
 
         getById: (id:string)=>fetchHandler(API_URL+"/accounts/"+id),
+
+        getByProvider: (providerAccountId:string, )=>fetchHandler(API_URL+'/accounts/provider',{
+            method:"POST",
+            body: JSON.stringify({providerAccountId})
+        }),
 
         update: (id:string,data:{
             userId?:string
@@ -83,6 +88,21 @@ export const api={
 
         delete: (id:string)=>fetchHandler(API_URL+"/accounts"+id,{
             method:"DELETE"
+        })
+    },
+    auth:{
+        oAuthSignin: ({provider,providerAccountId,user}:{
+            provider:string,
+            providerAccountId:string,
+            user:{
+                username:string,
+                password?:string,
+                email:string,
+                image:string,
+            }
+        })=>fetchHandler(API_URL+'/auth/signin-with-oauth',{
+            method:"POST",
+            body: JSON.stringify({provider,providerAccountId,user})
         })
     }
 }
