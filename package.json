@@ -29,6 +29,7 @@
     "react-dom": "19.1.0",
     "react-icons": "^5.7.0",
     "react-toastify": "^11.1.0",
+    "slugify": "^1.6.9",
     "use-debounce": "^10.1.1",
     "zod": "^4.4.3"
   },
