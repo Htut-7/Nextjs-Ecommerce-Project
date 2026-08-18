@@ -23,7 +23,6 @@ export async function POST(request: Request){
 
         validateBody(body, UserSchema);
 
-
         const existingEmail=await User.findOne({email: body.email});
         if(existingEmail) throw new Error('Email already exists');
 

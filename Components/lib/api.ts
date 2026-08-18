@@ -49,5 +49,40 @@ export const api={
         delete: (id:string)=>fetchHandler(API_URL+'/products/'+id,{
             method:"DELETE"
         }),
+    },
+
+    accounts:{
+        getAll: ()=>fetchHandler(API_URL+'/accounts'),
+
+        create: (data: {
+            userId: string,
+            username:string,
+            email: string,
+            password: string,
+            provider: string,
+            providerAccountId: string,
+        })=>fetchHandler(API_URL+'/account',{
+            method:"POST",
+            body: JSON.stringify(data)
+        }),
+
+        getById: (id:string)=>fetchHandler(API_URL+"/accounts/"+id),
+
+        update: (id:string,data:{
+            userId?:string
+            username?:string,
+            email?:string,
+            password?:string,
+            provider?:string,
+            providerAccountId?:string,
+            image?:string
+        })=>fetchHandler(API_URL+"/accounts"+id,{
+            method:"PUT",
+            body: JSON.stringify(data)
+        }),
+
+        delete: (id:string)=>fetchHandler(API_URL+"/accounts"+id,{
+            method:"DELETE"
+        })
     }
 }
