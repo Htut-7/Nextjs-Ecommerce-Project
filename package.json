@@ -18,6 +18,7 @@
     "@tiptap/pm": "^3.29.2",
     "@tiptap/react": "^3.29.2",
     "@tiptap/starter-kit": "^3.29.2",
+    "bcryptjs": "^3.0.3",
     "highlight.js": "^11.11.1",
     "lowlight": "^3.3.0",
     "mongodb": "^7.5.0",
