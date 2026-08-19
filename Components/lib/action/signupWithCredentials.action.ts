@@ -1,14 +1,16 @@
+"use server";
+
 import User from "@/database/user.model";
 import dbConnect from "../dbConnect"
-import { handleErrorResponse, handleSuccessResponse } from "../response";
+import { actionError } from "../response";
 import signupWithCredentialsSchema from "../schema/signupWithCredentialSchema";
 import validateBody from "../validateBody";
 import mongoose from "mongoose";
 import Account from "@/database/account.model";
 import bcrypt from  "bcryptjs";
+import { signIn } from "@/auth";
 
 export async function signupWithCredentail(params:{
-    name:string,
     email:string,
     username:string,
     password:string
@@ -19,7 +21,7 @@ export async function signupWithCredentail(params:{
 
     try{
     const validatedData=validateBody(params,signupWithCredentialsSchema);
-    const {username,email,password}=validatedData.data;
+    const {username,email,password}=validatedData;
 
     const existingUser=await User.findOne({email});
     
@@ -30,7 +32,7 @@ export async function signupWithCredentail(params:{
     const existingUsername=await User.findOne({username});
 
     if(existingUsername){
-        throw new Error("Username already exisits");
+        throw new Error("Username already exists");
     }
 
     const [newUser] =await User.create([
@@ -47,7 +49,7 @@ export async function signupWithCredentail(params:{
             userId: newUser._id,
             username,
             email,
-            provider:"credentails",
+            provider:"credentials",
             providerAccountId:email,
             password: await bcrypt.hash(password,10),
         }
@@ -56,11 +58,12 @@ export async function signupWithCredentail(params:{
     });
 
     await session.commitTransaction();
-    return handleSuccessResponse(newUser);
+    await signIn("credentials",{email,password,redirect:false})
+    return {success:true};
 
     }catch(error){
         await session.abortTransaction();
-        return handleErrorResponse(error);
+        return actionError(error);
     }finally{
         await session.endSession();
     }

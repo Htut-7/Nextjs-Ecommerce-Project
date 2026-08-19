@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import Input from "@/Components/Input";
-import Button from "@/Components/Button";
 import AuthForm from "../components/AuthForm";
-import Link from "next/link";
+import RegisterForm from "../components/RegisterForm";
 
 function Page() {
   return (
@@ -22,37 +20,7 @@ function Page() {
           </p>
         </div>
 
-        <div className="space-y-5">
-          <Input
-            type="text"
-            label="Username"
-            placeholder="Enter Username"
-          />
-
-          <Input
-            type="email"
-            label="Email"
-            placeholder="Enter Email"
-          />
-
-          <Input
-            type="password"
-            label="Password"
-            placeholder="Enter Password"
-          />
-
-          <Button>Register</Button>
-
-          <p className="text-center text-sm text-slate-500">
-            Already have an account?{" "}
-            <Link
-              href="/Login"
-              className="font-semibold text-slate-900 transition-colors hover:underline"
-            >
-              Sign In
-            </Link>
-          </p>
-        </div>
+        <RegisterForm/>
 
         <div className="my-8 flex items-center gap-4">
           <div className="h-px flex-1 bg-slate-200"></div>

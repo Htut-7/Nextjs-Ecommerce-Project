@@ -32,6 +32,23 @@ const handleErrorResponse=(e: unknown)=>{
             status
         }
     )
+};
+
+const actionError=(e: unknown)=>{
+
+    let details=null;
+    let message=e instanceof Error ? e.message : "Something went Wrong";
+
+    if(e instanceof ZodError){
+        details= e.flatten().fieldErrors;
+        message= "Validation Error";
+    }
+
+    return{
+         message,
+         details,
+         success: false,
+    }
 }
 
-export {handleErrorResponse,handleSuccessResponse}
+export {handleErrorResponse,handleSuccessResponse,actionError}
