@@ -2,7 +2,8 @@
 
 import React from "react";
 import AuthForm from "../components/AuthForm";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/AuthenticationForm";
+import { signupWithCredentials } from "@/Components/lib/action/signupWithCredentials.action";
 
 function Page() {
   return (
@@ -20,7 +21,7 @@ function Page() {
           </p>
         </div>
 
-        <RegisterForm/>
+        <RegisterForm type="register" submitAction={signupWithCredentials}/>
 
         <div className="my-8 flex items-center gap-4">
           <div className="h-px flex-1 bg-slate-200"></div>

@@ -1,9 +1,8 @@
 "use client";
 
-import Input from "@/Components/Input";
-import Button from "@/Components/Button";
+import { signinWithCredentials } from "@/Components/lib/action/signinWithCredentials.action";
 import AuthForm from "../components/AuthForm";
-import Link from "next/link";
+import RegisterForm from "../components/AuthenticationForm";
 
 export default function Page() {
   return (
@@ -21,39 +20,7 @@ export default function Page() {
           </p>
         </div>
 
-        <div className="space-y-5">
-          <Input
-            type="email"
-            label="Email"
-            placeholder="Enter Email"
-          />
-
-          <Input
-          type="password"
-            label="Password"
-            placeholder="Enter Password"
-          />
-
-          <div className="flex items-center justify-between text-sm">
-           <Input label="Remember me" type='checkbox'/>
-
-            <button className="font-medium text-black hover:underline">
-              Forgot Password?
-            </button>
-          </div>
-
-          <Button>Login</Button>
-
-          <p className="text-center text-sm text-slate-500">
-        Don&apos;t have an account?{" "}
-        <Link
-            href="/Register"
-            className="font-semibold text-slate-900 transition-colors hover:underline"
-        >
-            Sign Up
-        </Link>
-</p>
-        </div>
+        <RegisterForm type="login" submitAction={signinWithCredentials}/>
 
         <div className="my-8 flex items-center gap-4">
           <div className="h-px flex-1 bg-slate-200"></div>

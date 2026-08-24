@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import Input from '@/Components/Input'
 import Button from '@/Components/Button'
 import Link from 'next/link'
-import { signupWithCredentials } from '@/Components/lib/action/signupWithCredentials.action';
 import { useRouter } from 'next/navigation';
 import ROUTES from '@/ROUTES';
 
@@ -22,7 +21,8 @@ interface FormData{
   [key: string]: string[] | undefined;
 }
 
-function RegisterForm() {
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+function AuthenticationForm({type,submitAction} : {type: 'login' | 'register'; submitAction: Function}) {
 
     const [formData,setFormData]=useState<FormData>({
         username:"",
@@ -34,12 +34,12 @@ function RegisterForm() {
 
     const [errors,setErrors]=useState<FormErrors | null>(null);
 
-   const register = async (e: React.FormEvent<HTMLFormElement>) => {
+   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 
   setErrors(null);
 
-  const result = await signupWithCredentials(formData);
+  const result = await submitAction(formData);
 
   console.log("REGISTER RESULT:", result);
 
@@ -67,8 +67,10 @@ function RegisterForm() {
 };
 
   return (
-      <form className="space-y-5" onSubmit={register}>
-          <Input
+      <form className="space-y-5" onSubmit={submit}>
+          {type==='register' && (
+            <>
+              <Input
             type="text"
             label="Username"
             placeholder="Enter Username" onChange={e=>(
@@ -79,6 +81,8 @@ function RegisterForm() {
                 <p>{errors.username[0]}</p>
             )}
 
+            </>
+          )}
           <Input
             type="email"
             label="Email"
@@ -101,7 +105,7 @@ function RegisterForm() {
                 <p>{errors.password[0]}</p>
             )}
 
-          <Button type='submit'>Register</Button>
+          <Button type='submit'>{type==='login' ? 'Login' : 'Register'}</Button>
 
           <p className="text-center text-sm text-slate-500">
             Already have an account?{" "}
@@ -116,4 +120,4 @@ function RegisterForm() {
   )
 }
 
-export default RegisterForm
+export default AuthenticationForm;
