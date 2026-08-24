@@ -7,7 +7,7 @@ const AccountSchema=z.object({
     password: z.string().optional(),
     provider: z.string().min(1, "Provider is required"),
     providerAccountId: z.string().min(1, "Provider account ID is required"),
-    image: z.string().url("Image url is required"),
+    image: z.string().url("Image url is required").optional(),
 })
 
 export default AccountSchema;

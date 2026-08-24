@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Input from '@/Components/Input'
 import Button from '@/Components/Button'
 import Link from 'next/link'
-import { signupWithCredentail } from '@/Components/lib/action/signupWithCredentials.action';
+import { signupWithCredentials } from '@/Components/lib/action/signupWithCredentials.action';
 import { useRouter } from 'next/navigation';
 import ROUTES from '@/ROUTES';
 
@@ -34,32 +34,37 @@ function RegisterForm() {
 
     const [errors,setErrors]=useState<FormErrors | null>(null);
 
-    const register=async(e : React.FormEvent<HTMLFormElement>)=>{
-        e.preventDefault();
+   const register = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-        setErrors(null);
-        const result=await signupWithCredentail(formData);
- 
-        if(result.success){
-            console.log('success');
-            router.push(ROUTES.HOME)
-        }
-            if("details" in result && result.details){
-                setErrors(result.details);
-            }
+  setErrors(null);
 
-            if("message" in result && result.message==="Email already exists"){
-               setErrors({
-                email: [result.message]
-               })
-            }
+  const result = await signupWithCredentials(formData);
 
-             if("message" in result && result.message==="Username already exists"){
-               setErrors({
-                username: [result.message]
-               })
-            }
-    }
+  console.log("REGISTER RESULT:", result);
+
+  if (result.success) {
+    console.log("success");
+    router.push(ROUTES.HOME);
+    return;
+  }
+
+  if ("details" in result && result.details) {
+    setErrors(result.details);
+  }
+
+  if ("message" in result && result.message === "Email already exists") {
+    setErrors({
+      email: [result.message],
+    });
+  }
+
+  if ("message" in result && result.message === "Username already exists") {
+    setErrors({
+      username: [result.message],
+    });
+  }
+};
 
   return (
       <form className="space-y-5" onSubmit={register}>
