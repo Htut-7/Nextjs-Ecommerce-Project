@@ -1,9 +1,16 @@
 import Link from 'next/link'
 import React from 'react'
-// import Button from './Button'
+import Button from './Button'
 import ROUTES from "@/ROUTES"
+import { auth } from '@/auth'
+import { signOut } from '@/auth'
+import { redirect } from 'next/navigation'
 
-function Nav() {
+async function Nav() {
+
+   const session=await auth();
+   const user=session?.user;
+
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
@@ -40,7 +47,8 @@ function Nav() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link
+          {!user && <>
+            <Link
             href="/Register"
             className="text-sm font-medium text-slate-700 transition-colors hover:text-black"
           >
@@ -53,9 +61,20 @@ function Nav() {
           >
             Login
           </Link>
+          </>}
 
-          {/* <div className="flex items-center gap-3">
-            <Button>Logout</Button>
+          <div className="flex items-center gap-3">
+           {user && 
+            <>
+              <form action={async ()=>{
+                "use server"
+
+                await signOut({redirect:false});
+                return redirect(ROUTES.LOGIN)
+
+              }}>
+                 <Button type='submit'>Logout</Button>
+              </form>
 
             <Link
               href="/profile"
@@ -63,7 +82,9 @@ function Nav() {
             >
               Profile
             </Link>
-          </div> */}
+            </>
+           }
+          </div>
         </div>
       </div>
     </nav>

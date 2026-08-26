@@ -2,7 +2,8 @@ const ROUTES={
     HOME: '/',
     PRODUCT: '/products',
     BLOGS: '/blogs',
-    CONTACT: '/contact/create'
+    CONTACT: '/contact/create',
+    LOGIN: '/Login'
 }
 
 export default ROUTES;
