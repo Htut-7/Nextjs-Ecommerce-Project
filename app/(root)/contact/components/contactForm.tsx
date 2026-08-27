@@ -4,19 +4,24 @@ import React, { useState } from "react";
 import Input from "@/Components/Input";
 import Editor from "@/Components/Editor";
 import Button from "@/Components/Button";
+import { Bounce, toast } from "react-toastify";
+import { MessageCreate } from "@/Components/lib/action/messageCreate.action";
+import { useRouter } from "next/navigation";
+import ROUTES from "@/ROUTES";
 
 function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [tag,setTag]=useState<string[]>(['technical', 'usage']);
+  const [tags,setTags]=useState<string[]>(['technical', 'usage']);
   const [newTag,setNewTag]=useState("");
-  const [value,setValue]=useState('');
+  const [content,setContent]=useState('');
+  const router=useRouter();
 
   const enterHandler=(e: React.KeyboardEvent<HTMLInputElement>)=>{
 
     if(e.key==='Enter'){
-        if(!tag.includes(newTag)){
-            setTag([...tag,newTag]);
+        if(!tags.includes(newTag)){
+            setTags([...tags,newTag]);
             setNewTag("");
         }else{
             Error('Error');
@@ -24,8 +29,52 @@ function ContactForm() {
     }
   }
 
+  const submit=async(e: React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+
+    try{
+     const result= await MessageCreate({
+        name,
+        email,
+        content,
+        tags
+      })
+      console.log("RESULT:", result);
+      if(result.success && result.data){
+        toast.success('Message Create Successfully', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
+               const path= router.push(ROUTES.MESSAGE_DETAILS(result.data?._id))
+               console.log("REDIRECT:", path);
+      }
+      
+    }catch(e){
+      if(e instanceof Error){
+                toast.error('Sign In Failed', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
+            }
+    }
+  }
+
   return (
-    <section className="bg-slate-50 py-16">
+    <form className="bg-slate-50 py-16" onSubmit={submit}>
   <div className="mx-auto max-w-4xl px-6">
     <div className="space-y-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm md:p-10">
 
@@ -65,7 +114,7 @@ function ContactForm() {
         </label>
 
         <div className="overflow-hidden rounded-2xl border border-slate-300 bg-white shadow-sm">
-          <Editor value={value} onChange={(v)=>setValue(v)} label="any question"/>
+          <Editor value={content} onChange={(v)=>setContent(v)} label="any question"/>
         </div>
       </div>
 
@@ -83,7 +132,7 @@ function ContactForm() {
         />
 
         <div className="flex flex-wrap gap-2">
-          {tag.map((t, i) => (
+          {tags.map((t, i) => (
             <span
               key={i}
               className="rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700"
@@ -95,14 +144,14 @@ function ContactForm() {
       </div>
 
       <div className="flex justify-end border-t border-slate-200 pt-6">
-        <Button className="px-8">
+        <Button type='submit' className="px-8">
           Send Message
         </Button>
       </div>
 
     </div>
   </div>
-</section>
+</form>
   );
 }
 
