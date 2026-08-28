@@ -8,13 +8,17 @@ import { Bounce, toast } from "react-toastify";
 import { MessageCreate } from "@/Components/lib/action/messageCreate.action";
 import { useRouter } from "next/navigation";
 import ROUTES from "@/ROUTES";
+import { IContact } from "@/database/contact.model";
 
-function ContactForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [tags,setTags]=useState<string[]>(['technical', 'usage']);
+function ContactForm({message, isEdit=false}:{
+  message?: IContact,
+  isEdit: boolean,
+}) {
+  const [name, setName] = useState(message?.name ?? "");
+  const [email, setEmail] = useState(message?.email ?? "");
+  const [tags,setTags]=useState<string[]>(message?.tags?.map(tag=>tag.name) ?? []);
   const [newTag,setNewTag]=useState("");
-  const [content,setContent]=useState('');
+  const [content,setContent]=useState(message?.content ?? "");
   const router=useRouter();
 
   const enterHandler=(e: React.KeyboardEvent<HTMLInputElement>)=>{
@@ -33,6 +37,29 @@ function ContactForm() {
     e.preventDefault();
 
     try{
+      if(isEdit && message){
+        const result= await MessageCreate({
+        name,
+        email,
+        content,
+        tags
+      })
+      if(result.success && result.data){
+        toast.success('Message Update Successfully', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+                });
+               const path= router.push(ROUTES.MESSAGE_DETAILS(result.data?._id))
+               console.log("REDIRECT:", path);
+      }
+      }
      const result= await MessageCreate({
         name,
         email,
@@ -145,7 +172,7 @@ function ContactForm() {
 
       <div className="flex justify-end border-t border-slate-200 pt-6">
         <Button type='submit' className="px-8">
-          Send Message
+          {isEdit ? "Update Message": "Send Message"}
         </Button>
       </div>
 
