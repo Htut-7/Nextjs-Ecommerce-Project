@@ -9,6 +9,7 @@ import { MessageCreate } from "@/Components/lib/action/messageCreate.action";
 import { useRouter } from "next/navigation";
 import ROUTES from "@/ROUTES";
 import { IContact } from "@/database/contact.model";
+import RemovableTagCard from "@/Components/RemovableTagCard";
 
 function ContactForm({message, isEdit=false}:{
   message?: IContact,
@@ -24,6 +25,7 @@ function ContactForm({message, isEdit=false}:{
   const enterHandler=(e: React.KeyboardEvent<HTMLInputElement>)=>{
 
     if(e.key==='Enter'){
+      e.preventDefault();
         if(!tags.includes(newTag)){
             setTags([...tags,newTag]);
             setNewTag("");
@@ -98,6 +100,12 @@ function ContactForm({message, isEdit=false}:{
                 });
             }
     }
+  };
+
+  const removeTag=(t: string)=>{
+    setTags((prev)=>{
+      return prev.filter((eachTag=>eachTag!==t))
+    })
   }
 
   return (
@@ -159,13 +167,10 @@ function ContactForm({message, isEdit=false}:{
         />
 
         <div className="flex flex-wrap gap-2">
-          {tags.map((t, i) => (
-            <span
-              key={i}
-              className="rounded-full border border-slate-200 bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700"
-            >
-              #{t}
-            </span>
+          {tags.map((t) => (
+            <RemovableTagCard key={t} onRemove={()=>removeTag(t)}>
+              {t}
+            </RemovableTagCard>
           ))}
         </div>
       </div>
