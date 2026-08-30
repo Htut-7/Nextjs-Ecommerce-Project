@@ -7,7 +7,7 @@ const EditQuestionSchema = z.object({
 
   content: z.string().min(1, { message: "Message is required" }),
 
-  tags: z.array(z.string()).min(1, { message: "Tags is required" }),
+  tags: z.array(z.string()),
   messageId:z.string()
 });
 
