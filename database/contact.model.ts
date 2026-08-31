@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, models } from "mongoose";
 
-export interface IContact extends Document {
+ interface IContact {
   name: string;
   email: string;
   content: string;
@@ -8,7 +8,7 @@ export interface IContact extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
-
+export interface IContactDoc extends IContact, Document{}
 const ContactSchema = new Schema<IContact>(
   {
     name: {
