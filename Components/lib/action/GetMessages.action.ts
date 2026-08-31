@@ -5,6 +5,7 @@ import validateBody from "../validateBody";
 import PaginatedSearchParamsSchema from "../schema/PaginatedSearchParamsSchema";
 import { FilterQuery } from "mongoose";
 import { actionError } from "../response";
+import Tag from "@/database/Tags.model";
 
 export async function GetMessages(params:{
     page?: number,
@@ -25,7 +26,7 @@ export async function GetMessages(params:{
     const validatedData=validateBody(params,PaginatedSearchParamsSchema);
     const {page=1, pageSize=10, sort, filter, search}=validatedData;
 
-    const skip=Number(page)-1 * pageSize;
+    const skip=(Number(page)-1) * pageSize;
     const limit=Number(pageSize);
 
     const filterQuery: FilterQuery<typeof Contact>={};
@@ -36,7 +37,7 @@ export async function GetMessages(params:{
 
     if(search){
         filterQuery.$or=[
-            {title: {$regex: new RegExp(search,"i")}},
+            {name: {$regex: new RegExp(search, "i")}},
             {content: {$regex: new RegExp(search,"i")}}
         ]
     }

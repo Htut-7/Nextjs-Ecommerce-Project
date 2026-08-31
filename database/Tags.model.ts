@@ -22,6 +22,6 @@ const tagSchema = new Schema(
   { timestamps: true }
 );
 
-const Tags = models?.Tag || model<ITag>("Tag", tagSchema);
+const Tag = models?.Tag || model<ITag>("Tag", tagSchema);
 
-export default Tags;
+export default Tag;

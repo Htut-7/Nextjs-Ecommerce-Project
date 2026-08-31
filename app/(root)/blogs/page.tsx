@@ -4,7 +4,7 @@ import Link from 'next/link';
 import SearchInput from '@/Components/SearchInput';
 import Filter from '@/Components/Filter';
 
-async function page({searchParams} : {searchParams: Promise<{search?:string, filter?:string}>}) {
+async function page({searchParams} : {searchParams: Promise<{[key:string]:string}>}) {
 
     const res = await fetch('http://localhost:3001/blogs', {
         cache: "no-store"

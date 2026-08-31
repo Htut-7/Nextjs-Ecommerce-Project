@@ -50,6 +50,6 @@ const blogSchema=new Schema(
     },{timestamps: true}
 );
 
-const Blog=models?.Blog || model<Iblog>("blog",blogSchema);
+const Blog=models?.Blog || model<Iblog>("Blog",blogSchema);
 export default Blog;
 
