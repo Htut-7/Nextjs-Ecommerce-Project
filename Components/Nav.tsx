@@ -28,8 +28,8 @@ async function Nav() {
               Products
             </Link>
 
-            <Link href="/categories" className="transition-colors hover:text-black">
-              Categories
+            <Link href={ROUTES.TAGS} className="transition-colors hover:text-black">
+              Tags
             </Link>
 
             <Link href={ROUTES.BLOGS} className="transition-colors hover:text-black">
