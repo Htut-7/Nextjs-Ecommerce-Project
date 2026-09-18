@@ -1,5 +1,6 @@
 import { IContactDoc } from "@/database/contact.model";
 import React from "react";
+import Preview from "./Preview";
 
 function QuestionCard({ message }: { message: IContactDoc }) {
   return (
@@ -33,7 +34,7 @@ function QuestionCard({ message }: { message: IContactDoc }) {
 
       <div className="rounded-lg bg-gray-50 p-4">
         <p className="text-sm leading-6 text-gray-700">
-          {message.content}
+          <Preview content={message.content}/>
         </p>
       </div>
     </div>

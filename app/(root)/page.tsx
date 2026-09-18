@@ -3,7 +3,7 @@ import DataRenderer from "@/Components/DataRenderer";
 import Hero from "@/Components/Hero";
 import { GetMessages } from "@/Components/lib/action/GetMessages.action";
 import QuestionCard from "@/Components/QuestionCard";
-
+import Link from "next/link";
 
 export default async function Page({searchParams}:{
   searchParams: Promise<{
@@ -36,7 +36,8 @@ export default async function Page({searchParams}:{
 
     <div className="space-y-4">
       <DataRenderer success={success} errorMessage={message} data={messages} 
-      render={(messages)=>messages.map((message,i)=><QuestionCard message={message} key={i}/>)}/>
+      // eslint-disable-next-line react/jsx-key
+      render={(messages)=>messages.map((message,i)=>(<Link href={`/contact/${message._id}`}><QuestionCard message={message} key={i}/></Link>))}/>
     </div>
 </div>
 
