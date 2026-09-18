@@ -1,6 +1,8 @@
 import { GetMessage } from "@/Components/lib/action/GetMessage.action";
+import { IncreaseView } from "@/Components/lib/action/IncreaseView.action";
 import Preview from "@/Components/Preview";
 import { notFound } from "next/navigation";
+import { after } from "node:test";
 import React from "react";
 
 async function Page({
@@ -21,6 +23,12 @@ async function Page({
   if (!message) {
     notFound();
   }
+
+  after(async()=>{
+    await IncreaseView({
+      messageId: id,
+    })
+  })
 
   return (
     <div className="mx-auto max-w-4xl p-6">
