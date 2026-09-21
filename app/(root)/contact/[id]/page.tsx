@@ -1,3 +1,4 @@
+import CommentForm from "@/Components/CommentForm";
 import { GetMessage } from "@/Components/lib/action/GetMessage.action";
 import { IncreaseView } from "@/Components/lib/action/IncreaseView.action";
 import Preview from "@/Components/Preview";
@@ -54,9 +55,9 @@ async function Page({
 
           <div>
             <p className="text-sm text-gray-400">Message</p>
-            <p className="mt-2 whitespace-pre-wrap text-gray-300">
+            <div className="mt-2 whitespace-pre-wrap text-gray-300">
               <Preview content={message.content}/>
-            </p>
+            </div>
           </div>
 
           <div>
@@ -71,6 +72,10 @@ async function Page({
                   {tag.name}
                 </span>
               ))}
+            </div>
+
+            <div className="my-3">
+              <CommentForm messageId={id}/>
             </div>
           </div>
         </div>
