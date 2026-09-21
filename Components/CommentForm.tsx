@@ -17,7 +17,8 @@ function CommentForm({messageId} : {messageId: string})  {
                 messageId,
                 content,
             })
-            if(result.success && result.data){
+            console.log(result);
+            if(result.success){
         toast.success('Message Create Successfully', {
                 position: "top-center",
                 autoClose: 5000,
@@ -29,6 +30,18 @@ function CommentForm({messageId} : {messageId: string})  {
                 theme: "light",
                 transition: Bounce,
                 });
+                setContent("");
+      }else{
+        toast.error(result.message || "Failed to create comment", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
       }
         }catch(e){
             if(e instanceof Error){
