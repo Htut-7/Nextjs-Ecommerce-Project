@@ -42,7 +42,7 @@ export async function GetComments(params:{
         //     break;
 
         default:
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+           
             sortCriteria={createdAt: -1};
     }
 
