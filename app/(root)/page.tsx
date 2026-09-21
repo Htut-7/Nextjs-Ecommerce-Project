@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth";
 import DataRenderer from "@/Components/DataRenderer";
 import Hero from "@/Components/Hero";
@@ -37,8 +38,16 @@ export default async function Page({searchParams}:{
     <div className="space-y-4">
       <DataRenderer success={success} errorMessage={message} data={messages} 
       
-      // eslint-disable-next-line react/jsx-key
-      render={(messages)=>messages.map((message)=>(<Link href={`/contact/${message._id}`}><QuestionCard message={message} key={message._id.toString()}/></Link>))}/>
+     render={(messages) =>
+  messages.map((message) => (
+    <Link
+      key={message._id.toString()}
+      href={`/contact/${message._id}`}
+    >
+      <QuestionCard message={message} />
+    </Link>
+  ))
+}/>
     </div>
 </div>
 

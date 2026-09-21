@@ -1,10 +1,13 @@
 import CommentForm from "@/Components/CommentForm";
+import CommentList from "@/Components/CommentList";
+import { GetComments } from "@/Components/lib/action/GetComments.action";
 import { GetMessage } from "@/Components/lib/action/GetMessage.action";
 import { IncreaseView } from "@/Components/lib/action/IncreaseView.action";
 import Preview from "@/Components/Preview";
 import { notFound } from "next/navigation";
 import { after } from "node:test";
 import React from "react";
+import { success } from "zod";
 
 async function Page({
   params,
@@ -29,7 +32,20 @@ async function Page({
     await IncreaseView({
       messageId: id,
     })
+  });
+
+  const {
+    success,
+    message: commentMessage,
+    data: commentData
+  }=await GetComments({
+    page: 1,
+    pageSize: 10,
+    filter: "latest",
+    messageId: id
   })
+
+  const {comments= [], totalComments=0} = commentData || {};
 
   return (
     <div className="mx-auto max-w-4xl p-6">
@@ -64,7 +80,7 @@ async function Page({
             <p className="mb-2 text-sm text-gray-400">Tags</p>
 
             <div className="flex flex-wrap gap-2">
-              {message.tags?.map((tag) => (
+              {message.tags?.map((tag: { _id: { toString: () => React.Key | null | undefined; }; name: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }) => (
                 <span
                   key={tag._id.toString()}
                   className="rounded-full bg-gray-800 px-3 py-1 text-sm"
@@ -72,6 +88,10 @@ async function Page({
                   {tag.name}
                 </span>
               ))}
+            </div>
+
+            <div className="my-3">
+              <CommentList errorMessage={commentMessage} success={success} comments={comments} totalComments={totalComments}/>
             </div>
 
             <div className="my-3">
