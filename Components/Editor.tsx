@@ -1,5 +1,6 @@
 'use client'
 
+import {Markdown} from "tiptap-markdown";
 import { useEditor, EditorContent, useEditorState  } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Bold from '@tiptap/extension-bold'
@@ -11,7 +12,7 @@ import Link from '@tiptap/extension-link'
 import { FaBold, FaItalic, FaLink, FaCode } from "react-icons/fa";
 import { MdFormatListBulleted } from "react-icons/md";
 import { AiOutlineOrderedList } from "react-icons/ai";
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import css from 'highlight.js/lib/languages/css'
 import js from 'highlight.js/lib/languages/javascript'
 import ts from 'highlight.js/lib/languages/typescript'
@@ -108,14 +109,35 @@ const Editor = ({value,onChange,label} : {value?: string, onChange: (value:strin
       CodeBlockLowlight.configure({
         lowlight,
       }),
+      Markdown.configure({
+        html: false,
+      }),
     ],
-    content: value || "",
     onUpdate({editor}){
-      onChange(editor.getHTML());
+      const md=editor?.storage?.markdown?.getMarkdown();
+      if(md != value){
+        onChange(md);
+      }
     },
     // Don't render immediately on the server to avoid SSR issues
     immediatelyRender: false,
-  })
+  });
+
+  useEffect(()=>{
+    if(!editor) return;
+    if(typeof value != "string") return;
+
+    try{
+      const md=editor?.storage?.markdown?.getMarkdown();
+
+      if(md != value){
+        editor.commands.setContent(value);
+      }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    }catch(e){
+      editor.commands.clearContent();
+    }
+  },[value, editor])
 
   const setLink = useCallback(() => {
     const previousUrl = editor?.getAttributes('link').href
@@ -159,58 +181,58 @@ const Editor = ({value,onChange,label} : {value?: string, onChange: (value:strin
         <>
         <div className='overflow-hidden rounded-2xl bg-white'>
             <div className='flex flex-wrap items-center gap-2 border-b border-slate-200 bg-slate-50 p-3 px-3 py-2'>
-                 <button
+                 <button type='button'
                     onClick={() => editor?.chain().focus().toggleBold().run()}
                     className={editor?.isActive('bold') ? 'is-active' : ''}
                 >
                     <FaBold />
                 </button>
 
-                <button
+                <button type='button'
             onClick={() => editor?.chain().focus().toggleItalic().run()}
             className={editor?.isActive('italic') ? 'is-active' : ''}
           >
             <FaItalic />
           </button>
 
-            <button
+            <button type='button'
             onClick={() => editor?.chain().focus().toggleHeading({ level: 1 }).run()}
             className={editor?.isActive("heading", {level:1}) ? 'is-active' : ''}
           >
             H1
           </button>
-          <button
+          <button type='button'
             onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
             className={editor?.isActive("heading" , {level:2}) ? 'is-active' : ''}
           >
             H2
           </button>
-          <button
+          <button type='button'
             onClick={() => editor?.chain().focus().toggleHeading({ level: 3 }).run()}
             className={editor?.isActive('heading', {level:3}) ? 'is-active' : ''}
           >
             H3
           </button>
 
-          <button
+          <button type='button'
             onClick={() => editor?.chain().focus().toggleBulletList().run()}
             className={editor?.isActive('bulletList') ? 'is-active' : ''}
           >
             <MdFormatListBulleted />
           </button>
 
-        <button
+        <button type='button'
             onClick={() => editor?.chain().focus().toggleOrderedList().run()}
             className={editor?.isActive('orderList') ? 'is-active' : ''}
           >
             <AiOutlineOrderedList />
           </button>
 
-          <button onClick={setLink} className={editor?.isActive('link') ? 'is-active' : ''}>
+          <button type='button' onClick={setLink} className={editor?.isActive('link') ? 'is-active' : ''}>
             <FaLink />
           </button>
 
-          <button
+          <button type='button'
             onClick={() => editor.chain().focus().toggleCodeBlock().run()}
             className={editor?.isActive('code') ? 'is-active' : ''}
           >

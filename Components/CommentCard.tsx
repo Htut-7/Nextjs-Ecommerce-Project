@@ -4,9 +4,11 @@ import Preview from "./Preview";
 
 function CommentCard({ comment }: { comment: IComment }) {
   const authorName =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ((comment as any)?.author?.name as string) || "Anonymous";
 
   const authorEmail =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ((comment as any)?.author?.email as string) || "";
 
   const initial = authorName.charAt(0).toUpperCase() || "?";

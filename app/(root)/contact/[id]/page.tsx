@@ -95,7 +95,7 @@ async function Page({
             </div>
 
             <div className="my-3">
-              <CommentForm messageId={id}/>
+              <CommentForm messageId={id} userName={message.name} userEmail={message.email} userContent={message.content}/>
             </div>
           </div>
         </div>

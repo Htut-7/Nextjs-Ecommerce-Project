@@ -12,7 +12,7 @@ function Button({
   children: React.ReactNode;
   icon?: string | StaticImageData;
   text?: string
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outline";
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
