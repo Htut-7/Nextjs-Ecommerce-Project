@@ -4,6 +4,7 @@ import { GetComments } from "@/Components/lib/action/GetComments.action";
 import { GetMessage } from "@/Components/lib/action/GetMessage.action";
 import { IncreaseView } from "@/Components/lib/action/IncreaseView.action";
 import Preview from "@/Components/Preview";
+import VoteButton from "@/Components/VoteButton";
 import { notFound } from "next/navigation";
 import { after } from "node:test";
 import React from "react";
@@ -80,7 +81,7 @@ async function Page({
             <p className="mb-2 text-sm text-gray-400">Tags</p>
 
             <div className="flex flex-wrap gap-2">
-              {message.tags?.map((tag: { _id: { toString: () => React.Key | null | undefined; }; name: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined; }) => (
+              {message.tags?.map((tag) => (
                 <span
                   key={tag._id.toString()}
                   className="rounded-full bg-gray-800 px-3 py-1 text-sm"
@@ -88,6 +89,10 @@ async function Page({
                   {tag.name}
                 </span>
               ))}
+            </div>
+
+            <div className="my-3">
+              <VoteButton type="message" typeId={id} initialDislike={message.dislikeVote} initialLike={message.dislikeVote}/>
             </div>
 
             <div className="my-3">

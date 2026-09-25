@@ -1,8 +1,9 @@
-import Comment, { type IComment } from "@/database/comment.model";
+"use server";
 import dbConnect from "../dbConnect";
 import validateBody from "../validateBody";
 import GetCommentsSchema from "../schema/GetCommentsSchema";
 import { actionError } from "../response";
+import Comment, { IComment } from "@/database/CommentModel.model";
 
 export async function GetComments(params:{
     page: number,

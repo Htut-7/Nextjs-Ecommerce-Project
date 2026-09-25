@@ -8,7 +8,7 @@ import validateBody from "../validateBody"
 import CreateCommentSchema from "../schema/CreateCommentSchema"
 import { auth } from "@/auth"
 import User from "@/database/user.model"
-import Comment from "@/database/comment.model"
+import Comment from "@/database/CommentModel.model";
 
 export async function CreateComment(params : {messageId: string, content: string}) : Promise<{
     success: boolean,

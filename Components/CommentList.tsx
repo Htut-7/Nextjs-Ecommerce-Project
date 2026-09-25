@@ -1,7 +1,8 @@
-import { IComment } from '@/database/comment.model'
+
 import React from 'react'
 import DataRenderer from './DataRenderer'
 import CommentCard from './CommentCard'
+import { IComment } from '@/database/CommentModel.model'
 
 function CommentList({comments, success, errorMessage, totalComments} : {
     comments: IComment[],

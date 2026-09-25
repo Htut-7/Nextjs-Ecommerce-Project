@@ -4,6 +4,8 @@ export interface IComment {
   content: string;
   message: mongoose.Types.ObjectId;
   author: mongoose.Types.ObjectId;
+  likeVote: number,
+  dislikeVote: number,
   createdAt: Date;
   updatedAt: Date;
 }
@@ -28,6 +30,15 @@ const CommentSchema = new Schema<IComment>(
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+    likeVote: {
+      type: Number,
+      default: 0,
+    },
+
+    dislikeVote: {
+      type: Number,
+      default: 0,
     },
   },
   {

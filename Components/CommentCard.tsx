@@ -1,6 +1,8 @@
-import { IComment } from "@/database/comment.model";
+
 import React from "react";
 import Preview from "./Preview";
+import VoteButton from "./VoteButton";
+import { IComment } from "@/database/CommentModel.model";
 
 function CommentCard({ comment }: { comment: IComment }) {
   const authorName =
@@ -54,6 +56,9 @@ function CommentCard({ comment }: { comment: IComment }) {
           <Preview content={comment.content} />
         </div>
       </div>
+      <footer>
+        <VoteButton type="comment" typeId={comment._id.toString()} initialDislike={comment.dislikeVote} initialLike={comment.likeVote}/>
+      </footer>
     </article>
   );
 }
