@@ -84,6 +84,7 @@ export async function VoteAction(params: {
                     }
                     existingVote.votetype=voteType;
                     await existingVote.save({session});
+                    userVote=voteType;
                 }
             }else{
                 await Vote.create([
@@ -106,6 +107,8 @@ export async function VoteAction(params: {
             item.likeVote=newLike;
             item.dislikeVote=newDislike;
             await item.save({session});
+
+            await session.commitTransaction();
 
             return{
                 success: true,

@@ -6,9 +6,9 @@ import { IncreaseView } from "@/Components/lib/action/IncreaseView.action";
 import Preview from "@/Components/Preview";
 import VoteButton from "@/Components/VoteButton";
 import { notFound } from "next/navigation";
-import { after } from "node:test";
+import {after} from "next/server";
 import React from "react";
-import { success } from "zod";
+
 
 async function Page({
   params,
@@ -92,7 +92,7 @@ async function Page({
             </div>
 
             <div className="my-3">
-              <VoteButton type="message" typeId={id} initialDislike={message.dislikeVote} initialLike={message.dislikeVote}/>
+              <VoteButton type="message" typeId={id} initialDislike={message.dislikeVote ?? 0} initialLike={message.likeVote ?? 0}/>
             </div>
 
             <div className="my-3">

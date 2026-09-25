@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, models } from "mongoose";
+import mongoose, { Schema, Document, models, model } from "mongoose";
 
 export interface IContact {
   name: string;
@@ -58,6 +58,6 @@ const ContactSchema = new Schema<IContact>(
 
 const Contact =
   models.Contact ||
-  mongoose.model<IContact>("Contact", ContactSchema);
+  model<IContact>("Contact", ContactSchema);
 
 export default Contact;

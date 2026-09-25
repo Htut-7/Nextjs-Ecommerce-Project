@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { VoteAction } from "./lib/action/VoteAction.action";
 import { Bounce, toast } from "react-toastify";
+import { GetVoteAction } from "./lib/action/GetVoteAction.action";
 
 function VoteButton({
   type,
@@ -20,6 +21,19 @@ function VoteButton({
   const [userVote, setUserVote] = useState<"like" | "dislike" | null>(null);
 
   const [isVoting, setIsVoting] = useState(false);
+
+  useEffect(()=>{
+    const fetchVote=async()=>{
+        const {success, data}=await GetVoteAction({
+            type,
+            typeId,
+        });
+        if(success && data){
+            setUserVote(data.userVote)
+        }
+    }
+    fetchVote();
+  },[type,typeId])
 
   const handleVote = async (voteType: "like" | "dislike") => {
     try {
@@ -70,7 +84,7 @@ function VoteButton({
   return (
     <div className="flex items-center space-x-2 text-xs">
       <button
-        className="rounded-lg border-white p-2 space-x-2"
+        className={`rounded-lg border-white p-2 space-x-2 ${userVote==="like" ? "border-green-500" : "border-white"}`}
         type="button"
         onClick={() => handleVote("like")}
         disabled={isVoting}
@@ -80,7 +94,7 @@ function VoteButton({
       </button>
 
       <button
-        className="rounded-lg border-white p-2 space-x-2"
+        className={`rounded-lg border-white p-2 space-x-2 ${userVote==="dislike" ? "border-red-500" : "border-white"}`}
         type="button"
         onClick={() => handleVote("dislike")}
         disabled={isVoting}
