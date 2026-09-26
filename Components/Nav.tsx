@@ -36,8 +36,8 @@ async function Nav() {
               Blogs
             </Link>
 
-            <Link href="/about" className="transition-colors hover:text-black">
-              About
+            <Link href={ROUTES.COMMUNITY} className="transition-colors hover:text-black">
+              Community
             </Link>
 
             <Link href={ROUTES.CONTACT} className="transition-colors hover:text-black">
