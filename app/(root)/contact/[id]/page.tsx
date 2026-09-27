@@ -8,6 +8,7 @@ import VoteButton from "@/Components/VoteButton";
 import { notFound } from "next/navigation";
 import {after} from "next/server";
 import React from "react";
+import ToogleBookmark from "@/Components/ToogleBookmark";
 
 
 async function Page({
@@ -93,6 +94,7 @@ async function Page({
 
             <div className="my-3">
               <VoteButton type="message" typeId={id} initialDislike={message.dislikeVote ?? 0} initialLike={message.likeVote ?? 0}/>
+              <ToogleBookmark messageId={id} />
             </div>
 
             <div className="my-3">
