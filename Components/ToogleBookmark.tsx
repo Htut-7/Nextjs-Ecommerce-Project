@@ -5,12 +5,12 @@ import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
 import { ToogleBookmarkAction } from './lib/action/ToogleBookmarkAction';
 import { Bounce, toast } from 'react-toastify';
 
-function ToogleBookmark({messageId, } : {
+function ToogleBookmark({messageId, saved } : {
     messageId: string,
-    // saved: boolean,
+    saved: boolean,
 }) {
 
-    const [isSave,setIsSave]=useState(false);
+    const [isSave,setIsSave]=useState(saved);
 
     const handleSave=async()=>{
         const {success, data, message}=await ToogleBookmarkAction({

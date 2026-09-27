@@ -6,7 +6,8 @@ const ROUTES={
     LOGIN: '/Login',
     MESSAGE_DETAILS: (id:string)=>'/contact/'+id,
     TAGS: '/tags',
-    COMMUNITY: '/community'
+    COMMUNITY: '/community',
+    BOOKMARK: '/bookmark',
 }
 
 export default ROUTES;

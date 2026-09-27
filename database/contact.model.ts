@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document, models, model } from "mongoose";
 
 export interface IContact {
+  saved: boolean;
   name: string;
   email: string;
   content: string;

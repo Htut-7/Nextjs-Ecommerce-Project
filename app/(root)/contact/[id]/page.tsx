@@ -94,7 +94,7 @@ async function Page({
 
             <div className="my-3">
               <VoteButton type="message" typeId={id} initialDislike={message.dislikeVote ?? 0} initialLike={message.likeVote ?? 0}/>
-              <ToogleBookmark messageId={id} />
+              <ToogleBookmark messageId={id} saved={message?.saved}/>
             </div>
 
             <div className="my-3">
