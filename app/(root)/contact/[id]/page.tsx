@@ -13,10 +13,15 @@ import ToogleBookmark from "@/Components/ToogleBookmark";
 
 async function Page({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{
+    [key: string]: string
+  }>
 }) {
   const { id } = await params;
+  const {page=1, pageSize=10,  filter="newest"}=await searchParams;
 
   const { data: message } = await GetMessage({
     messageId: id,
@@ -41,9 +46,9 @@ async function Page({
     message: commentMessage,
     data: commentData
   }=await GetComments({
-    page: 1,
-    pageSize: 10,
-    filter: "latest",
+    page: Number(page),
+    pageSize: Number(pageSize),
+    filter: filter,
     messageId: id
   })
 

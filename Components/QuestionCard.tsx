@@ -33,9 +33,9 @@ function QuestionCard({ message }: { message: IContactDoc }) {
       </div>
 
       <div className="rounded-lg bg-gray-50 p-4">
-        <p className="text-sm leading-6 text-gray-700">
+        <div className="text-sm leading-6 text-gray-700">
           <Preview content={message.content}/>
-        </p>
+        </div>
       </div>
     </div>
   );
