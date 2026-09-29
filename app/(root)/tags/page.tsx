@@ -1,7 +1,9 @@
 import { auth } from "@/auth";
+import CommonFilters from "@/Components/CommonFilters";
 import DataRenderer from "@/Components/DataRenderer";
 import { GetTags } from "@/Components/lib/action/GetTags.action";
 import TagInfoCard from "@/Components/TagInfoCard";
+import { DefaultFilters, TagFilters } from "@/constant/filters";
 
 
 export default async function Page({searchParams}:{
@@ -29,6 +31,10 @@ export default async function Page({searchParams}:{
   return (
     <div>
       <div className="mx-auto mt-8 w-full max-w-4xl px-4">
+        <div className="flex justify-between items-center">
+          <h3>All Tags</h3>
+          <CommonFilters filter={TagFilters} defaultFilter={DefaultFilters.TagFilters}/>
+        </div>
         <div className="space-y-4">
             <DataRenderer success={success} errorMessage={message} data={tags} 
              render={(tags)=><div className="grid grid-cols-4">

@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { auth } from "@/auth";
+import CommonFilters from "@/Components/CommonFilters";
 import DataRenderer from "@/Components/DataRenderer";
 import Hero from "@/Components/Hero";
 import { GetMessages } from "@/Components/lib/action/GetMessages.action";
 import QuestionCard from "@/Components/QuestionCard";
+import { DefaultFilters, MessageFilters } from "@/constant/filters";
 import Link from "next/link";
 
 export default async function Page({searchParams}:{
@@ -31,9 +33,12 @@ export default async function Page({searchParams}:{
       <Hero/>
 
       <div className="mx-auto mt-8 w-full max-w-4xl px-4">
-  <h2 className="mb-6 text-2xl font-semibold text-gray-900">
+ <div className="flex justify-between items-center">
+   <h2 className="mb-6 text-2xl font-semibold text-gray-900">
     Customer&apos;s Messages
   </h2>
+  <CommonFilters filter={MessageFilters} defaultFilter={DefaultFilters.MessageFilters}/>
+ </div>
 
     <div className="space-y-4">
       <DataRenderer success={success} errorMessage={message} data={messages} 

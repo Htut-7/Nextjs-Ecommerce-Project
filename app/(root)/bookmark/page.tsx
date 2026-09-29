@@ -1,6 +1,8 @@
 import Link from "next/link";
 import DataRenderer from "@/Components/DataRenderer";
 import { GetBookmark } from "@/Components/lib/action/GetBookmark.action";
+import CommonFilters from "@/Components/CommonFilters";
+import { BookmarkFilters, DefaultFilters } from "@/constant/filters";
 
 type BookmarkItem = {
   _id: string;
@@ -88,14 +90,7 @@ export default async function Page({
             className="min-w-0 flex-1 rounded-xl bg-[#FAF8F4] px-4 py-3 text-sm outline-none placeholder:text-[#9A958E] focus:ring-2 focus:ring-[#E87738]/30"
           />
 
-          <select
-            name="filter"
-            defaultValue={filter}
-            className="rounded-xl bg-[#FAF8F4] px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#E87738]/30"
-          >
-            <option value="newest">Newest first</option>
-            <option value="oldest">Oldest first</option>
-          </select>
+          <CommonFilters filter={BookmarkFilters} defaultFilter={DefaultFilters.BookmarkFilters}/>
 
           <button
             type="submit"

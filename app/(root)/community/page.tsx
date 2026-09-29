@@ -2,6 +2,8 @@ import { auth } from "@/auth";
 import DataRenderer from "@/Components/DataRenderer";
 import { GetUser } from "@/Components/lib/action/GetUser.action";
 import UserCard from "./components/UserCard";
+import CommonFilters from "@/Components/CommonFilters";
+import { DefaultFilters, UserFilters } from "@/constant/filters";
 
 
 export default async function Page({searchParams}:{
@@ -29,6 +31,10 @@ export default async function Page({searchParams}:{
   return (
     <div>
       <div className="mx-auto mt-8 w-full max-w-4xl px-4">
+        <div className="flex justify-between items-center">
+          <h3>All Users</h3>
+          <CommonFilters filter={UserFilters} defaultFilter={DefaultFilters.UserFilters}/>
+        </div>
         <div className="space-y-4">
             <DataRenderer success={success} errorMessage={message} data={user} 
              render={(user)=><div className="grid grid-cols-4">
