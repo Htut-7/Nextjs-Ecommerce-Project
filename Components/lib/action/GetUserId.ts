@@ -29,6 +29,9 @@ export async function GetUserId(params: {
 
         const user=await User.findById(userId);
 
+        console.log("Profile ID:", userId);
+console.log("Is MongoDB ObjectId:", /^[a-f\d]{24}$/i.test(userId));
+
         if(!user){
             throw new Error("User not found");
         }

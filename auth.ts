@@ -61,21 +61,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return success;
     },
 
-    async jwt({ token, account }) {
-      if (account) {
-        const { success, accountData } =
-          await api.accounts.getByProvider(account?.providerAccountId);
+   async jwt({ token, account }) {
+  if (account) {
+    const result = await api.accounts.getByProvider(
+      account.providerAccountId
+    );
 
-        if (!success || !accountData) return token;
+    console.log("Account lookup result:", result);
 
-        const userId = accountData?.userId;
+    if (result.success && result.data?.userId) {
+      token.sub = result.data.userId.toString();
+    }
 
-        if (userId) {
-          token.sub = userId;
-        }
-      }
-      return token;
-    },
+   console.log("Account document ID:", result.data?._id);
+console.log("Referenced user ID:", result.data?.userId);
+  }
+
+  return token;
+},
     async session({ session, token }) {
       session.user.id = token.sub as string;
       return session;

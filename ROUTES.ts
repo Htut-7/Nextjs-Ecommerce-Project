@@ -8,6 +8,7 @@ const ROUTES={
     TAGS: '/tags',
     COMMUNITY: '/community',
     BOOKMARK: '/bookmark',
+    PROFILE: (id: string)=> '/profile/'+id,
 }
 
 export default ROUTES;

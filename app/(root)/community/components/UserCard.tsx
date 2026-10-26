@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ROUTES from '@/ROUTES';
 
 function UserCard({ name, image, id }: { name: string; image: string; id: string }) {
   const initials = name
@@ -12,7 +13,7 @@ function UserCard({ name, image, id }: { name: string; image: string; id: string
 
   return (
     <div>
-      <Link href={`/user/${id}`} className='flex flex-col items-center justify-center rounded-xl p-2'>
+      <Link href={ROUTES.PROFILE(id)} className='flex flex-col items-center justify-center rounded-xl p-2'>
         {image ? (
           <Image
             width={100}

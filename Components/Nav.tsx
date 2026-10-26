@@ -11,6 +11,8 @@ async function Nav() {
    const session=await auth();
    const user=session?.user;
 
+  console.log("Navbar session user ID:", user?.id);
+
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
@@ -20,30 +22,13 @@ async function Nav() {
 
         <div>
           <ul className="flex items-center gap-8 text-sm font-medium text-slate-600">
-            <Link href={ROUTES.HOME} className="transition-colors hover:text-black">
-              Home
-            </Link>
-
-            <Link href={ROUTES.PRODUCT} className="transition-colors hover:text-black">
-              Products
-            </Link>
-
-            <Link href={ROUTES.BOOKMARK} className="transition-colors hover:text-black">
-              Bookmark
-            </Link>
-
-            <Link href={ROUTES.BLOGS} className="transition-colors hover:text-black">
-              Blogs
-            </Link>
-
-            <Link href={ROUTES.COMMUNITY} className="transition-colors hover:text-black">
-              Community
-            </Link>
-
-            <Link href={ROUTES.CONTACT} className="transition-colors hover:text-black">
-              Contact
-            </Link>
-          </ul>
+  <li><Link href={ROUTES.HOME}>Home</Link></li>
+  <li><Link href={ROUTES.PRODUCT}>Products</Link></li>
+  <li><Link href={ROUTES.BOOKMARK}>Bookmark</Link></li>
+  <li><Link href={ROUTES.BLOGS}>Blogs</Link></li>
+  <li><Link href={ROUTES.COMMUNITY}>Community</Link></li>
+  <li><Link href={ROUTES.CONTACT}>Contact</Link></li>
+</ul>
         </div>
 
         <div className="flex items-center gap-4">
@@ -77,7 +62,7 @@ async function Nav() {
               </form>
 
             <Link
-              href="/profile"
+              href={ROUTES.PROFILE(user.id as string)}
               className="text-sm font-medium text-slate-700 transition-colors hover:text-black"
             >
               Profile
