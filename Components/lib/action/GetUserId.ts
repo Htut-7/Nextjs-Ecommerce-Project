@@ -28,6 +28,8 @@ export async function GetUserId(params: {
         const {userId}=validatedData;
 
         const user=await User.findById(userId);
+        console.log("User found:", !!user);
+console.log("User document:", user);
 
         console.log("Profile ID:", userId);
 console.log("Is MongoDB ObjectId:", /^[a-f\d]{24}$/i.test(userId));

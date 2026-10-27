@@ -51,24 +51,33 @@ export async function POST(request:Request){
             }).session(session);
         }
 
-        const existingAccount=await Account.findOne({
-            userId:existingUser._id,
-            provider,
-            providerAccountId,
-        }).session(session);
+    
+const existingAccount = await Account.findOne({
+  provider,
+  providerAccountId,
+}).session(session);
 
-        if(!existingAccount){
-            await Account.create([
-                {
-                    userId:existingUser._id,
-                    provider,
-                    providerAccountId,
-                    username,
-                    image,
-                    email,
-                }
-            ],{session})
-        }
+if (existingAccount) {
+  existingAccount.userId = existingUser._id;
+  existingAccount.username = username;
+  existingAccount.email = email;
+  existingAccount.image = image;
+
+  await existingAccount.save({ session });
+} else {
+  await Account.create(
+    [{
+      userId: existingUser._id,
+      provider,
+      providerAccountId,
+      username,
+      image,
+      email,
+    }],
+    { session }
+  );
+}
+
 
         await session.commitTransaction();
         return handleSuccessResponse({

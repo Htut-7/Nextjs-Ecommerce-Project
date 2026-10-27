@@ -61,21 +61,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return success;
     },
 
-   async jwt({ token, account }) {
+  async jwt({ token, account }) {
   if (account) {
     const result = await api.accounts.getByProvider(
       account.providerAccountId
     );
 
     console.log("Account lookup result:", result);
+    console.log("MongoDB User ID:", result.data?.userId);
 
     if (result.success && result.data?.userId) {
       token.sub = result.data.userId.toString();
     }
-
-   console.log("Account document ID:", result.data?._id);
-console.log("Referenced user ID:", result.data?.userId);
   }
+
+  console.log("JWT subject:", token.sub);
 
   return token;
 },
