@@ -8,8 +8,8 @@ import { actionError } from "../response";
 
 export async function GetUserMessage(params:{
     userId: string;
-    page: number;
-    pageSize: number;
+    page?: number;
+    pageSize?: number;
 }) : Promise<{
     success: boolean;
     data?: {
@@ -32,7 +32,7 @@ export async function GetUserMessage(params:{
 
         const message=await Contact.find({author: userId})
                         .populate("author","name image")
-                        .populate("tag", "name")
+                        .populate("tags", "name")
                         .sort({createdAt: -1})
                         .skip(skip)
                         .limit(limit);

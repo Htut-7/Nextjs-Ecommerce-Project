@@ -8,8 +8,8 @@ import { actionError } from "../response";
 
 export async function GetUserComment(params:{
     userId: string;
-    page: number;
-    pageSize: number;
+    page?: number;
+    pageSize?: number;
 }) : Promise<{
     success: boolean;
     data?: {
